@@ -1,0 +1,158 @@
+/* BODY */
+body {
+  margin: 0;
+  background-color: #FFE5D9;
+  font-family: hugh;
+}
+
+/* FONT */
+@font-face { 
+  font-family:hugh;
+  src: url('../fonts/hugh.ttf');
+}
+
+/* SPLASH */
+.splash {
+  position: fixed;
+  inset: 0;
+  background-color: #FFE5D9;
+  z-index: 200;
+  overflow: hidden;
+}
+
+.splash.display-none {
+  opacity: 0;
+  z-index: -10;
+  transition: opacity 0.5s ease, z-index 0s 0.5s;
+
+  pointer-events: none; /* optional to prevent interaction while fading */
+}
+
+/* HEART WRAPPER */
+.heart-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* HEART IMAGE */
+.heart {
+  width: 600px;
+  opacity: 0.75;
+  display: block;
+  margin: 0 auto;
+}
+
+/* LOADING TEXT */
+.loading-text {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  color: #9D8189;
+  text-align: center;
+  pointer-events: none;
+}
+
+/* DOTS */
+.dot {
+  display: inline-block;
+  animation: dotPulse 1.5s infinite;
+}
+
+.dot:nth-of-type(1) { animation-delay: 0s; }
+.dot:nth-of-type(2) { animation-delay: 0.3s; }
+.dot:nth-of-type(3) { animation-delay: 0.6s; }
+
+.floating-hearts {
+  position: fixed;  /* span the viewport */
+  bottom: 0;        /* bottom aligned */
+  left: 0;
+  width: 100%;
+  height: 100%;     /* full screen height so hearts can rise */
+  pointer-events: none; /* hearts won’t block clicks */
+  overflow: visible;
+  z-index: 100; /* behind main heart */
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: 0;       /* start at bottom of container */
+  width: 150px;
+  height: 150px;
+  opacity: 0;
+  animation: floatHeart 4s linear forwards;
+}
+
+@keyframes floatHeart {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* DOT PULSE */
+@keyframes dotPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* HEART FLOAT */
+@keyframes float {
+  0%   { transform: translate(-50%, -50%) translateY(0); }
+  50%  { transform: translate(-50%, -50%) translateY(-40px); }
+  100% { transform: translate(-50%, -50%) translateY(0); }
+}
+
+/* MAIN HEADER */
+.letter-container {
+  position: fixed;
+  bottom: -200px; 
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 300; 
+  opacity: 0;
+  transition: bottom 2s ease, opacity 1s ease;
+}
+
+.letter-container.show {
+  bottom: 150px;   /* rise onto screen */
+  opacity: 1;      /* fade in */
+}
+
+@keyframes floatLetter {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.letter-text {
+  font-family: hugh;
+  color: #9D8189;
+  font-size: 100px;
+  margin: 5px 0;
+}
+
+.letter-text.bottom {
+  font-size: 60px;
+  color: #FF5C8D;
+  opacity: 50%;
+}
+
+.letter-img {
+  width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  animation: floatLetter 2s ease-in-out infinite;
+}
+
+
